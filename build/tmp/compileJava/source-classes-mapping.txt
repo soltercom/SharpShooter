@@ -1,0 +1,13 @@
+ru/spb/altercom/BulletHole.java
+ ru.spb.altercom.BulletHole
+ru/spb/altercom/Canvas.java
+ ru.spb.altercom.Canvas
+ ru.spb.altercom.Canvas$TAdapter
+ru/spb/altercom/Sight.java
+ ru.spb.altercom.Sight
+ru/spb/altercom/Application.java
+ ru.spb.altercom.Application
+ru/spb/altercom/Controller.java
+ ru.spb.altercom.Controller
+ru/spb/altercom/Target.java
+ ru.spb.altercom.Target
