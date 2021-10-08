@@ -12,13 +12,14 @@ import java.util.Set;
 public class Canvas extends JPanel implements ActionListener {
 
     private final Timer timer = new Timer(DELAY, this);
-    private final Controller controller = new Controller();
+    private final Controller controller;
 
     private boolean isChanged;
 
     private final static int DELAY = 20;
 
-    public Canvas(Application app) {
+    public Canvas(Controller controller) {
+        this.controller = controller;
         init();
     }
 
@@ -29,6 +30,11 @@ public class Canvas extends JPanel implements ActionListener {
 
     public void start() {
         timer.start();
+    }
+
+    public void stop() {
+        repaint();
+        timer.stop();
     }
 
     @Override
@@ -45,7 +51,7 @@ public class Canvas extends JPanel implements ActionListener {
 
         g.drawImage(Target.IMAGE, 0, 0, null);
         for (var bulletHole: controller.bulletHoleList) {
-            g.drawImage(BulletHole.IMAGE,
+                g.drawImage(BulletHole.IMAGE,
                     (int) bulletHole.getPoint().getX(),
                     (int) bulletHole.getPoint().getY(), null);
         }
@@ -88,7 +94,7 @@ public class Canvas extends JPanel implements ActionListener {
                 }
 
                 if (key == KeyEvent.VK_SPACE) {
-                    controller.addBulletHole();
+                     controller.addBulletHole();
                     isChanged = true;
                 }
 

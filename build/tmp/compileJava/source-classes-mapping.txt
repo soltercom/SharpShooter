@@ -9,6 +9,8 @@ ru/spb/altercom/Application.java
  ru.spb.altercom.Application
 ru/spb/altercom/Controller.java
  ru.spb.altercom.Controller
+ ru.spb.altercom.Controller$1
+ ru.spb.altercom.Controller$GAME_STATE
 ru/spb/altercom/Force.java
  ru.spb.altercom.Force
  ru.spb.altercom.Force$ForceUnit
