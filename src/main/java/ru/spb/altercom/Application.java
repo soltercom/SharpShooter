@@ -18,6 +18,7 @@ public class Application extends JFrame {
         setTitle("Sharp shooter");
         setSize(Controller.WIDTH, Controller.HEIGHT);
         setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true);
     }
 

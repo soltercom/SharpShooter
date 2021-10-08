@@ -14,7 +14,6 @@ public class Controller {
 
     public static final int SIGHT_RADIUS = 40;
     public static final int SIGHT_INSET = (int) (0.8 * SIGHT_RADIUS);
-    private static final int SIGHT_VELOCITY = 2;
 
     public static final int BULLET_HOLE_RADIUS = 5;
 
@@ -23,41 +22,57 @@ public class Controller {
     private int sightX;
     private int sightY;
 
+    private final Force force;
+
     public Controller() {
-        sightX = 200;
-        sightY = 200;
+        initialPosition();
+        this.force = new Force();
+    }
+
+    private void initialPosition() {
+        sightX = TARGET_CENTER - TARGET_CIRCLE_STEP * 10;
+        sightY = TARGET_CENTER - TARGET_CIRCLE_STEP * 10;
     }
 
     public void moveSightLeft() {
-        moveSight(-1, 0);
+        force.addLeftMovement();
     }
 
     public void moveSightRight() {
-        moveSight(1, 0);
+        force.addRightMovement();
     }
 
     public void moveSightUp() {
-        moveSight(0, -1);
+        force.addUpMovement();
     }
 
     public void moveSightDown() {
-        moveSight(0, 1);
+        force.addDownMovement();
     }
 
     public void addBulletHole() {
         var point = new Point2D.Double(getSightX() + SIGHT_RADIUS - BULLET_HOLE_RADIUS,
                                        getSightY() + SIGHT_RADIUS - BULLET_HOLE_RADIUS);
         bulletHoleList.add(new BulletHole(point));
+        initialPosition();
     }
 
-    private void moveSight(int dx, int dy) {
-        this.sightX += SIGHT_VELOCITY * dx;
-        this.sightX = Math.max(10, this.sightX);
-        this.sightX = Math.min(WIDTH - 2 * SIGHT_RADIUS - 20, this.sightX);
+    public boolean addRandomMovement() {
+        return force.addRandomMovement();
+    }
 
-        sightY += SIGHT_VELOCITY * dy;
-        sightY = Math.max(10, sightY);
-        sightY = Math.min(HEIGHT - 2 * SIGHT_RADIUS - 50, sightY);
+    public boolean moveSight() {
+        var velocity = force.getVelocity();
+
+        this.sightX += (int) velocity.getX();
+        this.sightX = Math.max(10, getSightX());
+        this.sightX = Math.min(WIDTH - 2 * SIGHT_RADIUS - 20, getSightX());
+
+        sightY += (int) velocity.getY();
+        sightY = Math.max(10, getSightY());
+        sightY = Math.min(HEIGHT - 2 * SIGHT_RADIUS - 50, getSightY());
+
+        return force.hasForces();
     }
 
     public int getSightX() {

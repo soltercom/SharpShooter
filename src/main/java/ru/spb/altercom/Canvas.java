@@ -33,9 +33,9 @@ public class Canvas extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (isChanged) {
+        if (controller.addRandomMovement() || isChanged) {
+            isChanged = controller.moveSight();
             repaint();
-            isChanged = false;
         }
     }
 

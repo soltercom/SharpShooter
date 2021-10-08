@@ -9,5 +9,8 @@ ru/spb/altercom/Application.java
  ru.spb.altercom.Application
 ru/spb/altercom/Controller.java
  ru.spb.altercom.Controller
+ru/spb/altercom/Force.java
+ ru.spb.altercom.Force
+ ru.spb.altercom.Force$ForceUnit
 ru/spb/altercom/Target.java
  ru.spb.altercom.Target
